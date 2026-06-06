@@ -1,0 +1,46 @@
+﻿@page
+@model Projekat.Pages.WorkPackagePage.DetailsModel
+@{
+    ViewData["Title"] = "WorkPackage Details";
+}
+
+<h1>WorkPackage Details</h1>
+
+<div>
+    <h4>WorkPackage</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.WorkPackage.Name</dd>
+
+        <dt class="col-sm-2">Description</dt>
+        <dd class="col-sm-10">@Model.WorkPackage.Description</dd>
+
+        <dt class="col-sm-2">Project</dt>
+        <dd class="col-sm-10">@Model.WorkPackage.Project?.Name</dd>
+
+        <dt class="col-sm-2">Planned Days</dt>
+        <dd class="col-sm-10">@Model.WorkPackage.PlannedDays</dd>
+
+        <dt class="col-sm-2">Priority</dt>
+        <dd class="col-sm-10">@Model.WorkPackage.Priority</dd>
+
+        <dt class="col-sm-2">Attachment</dt>
+        <dd class="col-sm-10">
+            @if (Model.WorkPackage.Attachment != null && Model.WorkPackage.Attachment.Length > 0)
+            {
+                <a asp-page="./DownloadAttachment" asp-route-id="@Model.WorkPackage.ID">Download</a>
+            }
+            else
+            {
+                <span>No file uploaded</span>
+            }
+        </dd>
+    </dl>
+
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.WorkPackage.ID" class="btn btn-primary">Edit</a>
+        <a asp-page="./Delete" asp-route-id="@Model.WorkPackage.ID" class="btn btn-danger">Delete</a>
+        <a asp-page="./WorkPackage" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

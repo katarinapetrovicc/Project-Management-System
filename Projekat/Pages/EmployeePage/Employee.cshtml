@@ -1,0 +1,51 @@
+﻿@page
+@model Projekat.Pages.EmployeePage.EmployeeModel
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h1>Employees</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Employee</a>
+</p>
+
+<form method="post" class="mb-3">
+    <input type="text" asp-for="SearchText" placeholder="Search by name..." class="form-control" style="width: 300px; display: inline-block;" />
+    <input type="submit" value="Search" class="btn btn-secondary" />
+</form>
+
+<table class="table table-bordered table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Profile Image</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Position</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var emp in Model.Employees)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/employee/@emp.ProfileImage" alt="@emp.FirstName" width="60" height="60" />
+                </td>
+                <td>@emp.FirstName</td>
+                <td>@emp.LastName</td>
+                <td>@emp.Position</td>
+                <td>@emp.Email</td>
+                <td>@emp.Phone</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@emp.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@emp.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@emp.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

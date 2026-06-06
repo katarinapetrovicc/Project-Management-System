@@ -1,0 +1,85 @@
+﻿@page
+@model Projekat.Pages.WorkPackagePage.EditModel
+@{
+    ViewData["Title"] = "Edit Work Package";
+}
+
+<h2>Edit Work Package</h2>
+
+@if (Model.WorkPackage != null)
+{
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3">
+            <label asp-for="WorkPackage.ProjectID"></label>
+            <select asp-for="WorkPackage.ProjectID" class="form-control" asp-items="Model.ProjectList">
+                <option value="">-- Select Project --</option>
+            </select>
+            <span asp-validation-for="WorkPackage.ProjectID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="WorkPackage.Name"></label>
+            <input asp-for="WorkPackage.Name" class="form-control" />
+            <span asp-validation-for="WorkPackage.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="WorkPackage.Description"></label>
+            <textarea asp-for="WorkPackage.Description" class="form-control"></textarea>
+            <span asp-validation-for="WorkPackage.Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="WorkPackage.PlannedDays"></label>
+            <input asp-for="WorkPackage.PlannedDays" type="number" class="form-control" />
+            <span asp-validation-for="WorkPackage.PlannedDays" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="WorkPackage.Priority"></label>
+            <select asp-for="WorkPackage.Priority" class="form-control">
+                <option value="">-- Select Priority --</option>
+                <option value="Low" selected="@("Low" == Model.WorkPackage.Priority)">Low</option>
+                <option value="Medium" selected="@("Medium" == Model.WorkPackage.Priority)">Medium</option>
+                <option value="High" selected="@("High" == Model.WorkPackage.Priority)">High</option>
+            </select>
+            <span asp-validation-for="WorkPackage.Priority" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Current Attachment</label>
+            <div>
+                @if (Model.WorkPackage.Attachment != null && Model.WorkPackage.Attachment.Length > 0)
+                {
+                    <a asp-page="./DownloadAttachment" asp-route-id="@Model.WorkPackage.ID">Download</a>
+                    <div>
+                        <input type="checkbox" asp-for="RemoveAttachment" /> Remove existing file
+                    </div>
+                }
+                else
+                {
+                    <span>No file uploaded</span>
+                }
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>New Attachment (optional)</label>
+            <input type="file" asp-for="AttachmentFile" class="form-control" />
+        </div>
+
+        <!-- Dugmad odvojena u poseban red -->
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="./WorkPackage" class="btn btn-secondary ml-2">Cancel</a>
+        </div>
+    </form>
+}
+else
+{
+    <p><em>Work package not found.</em></p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

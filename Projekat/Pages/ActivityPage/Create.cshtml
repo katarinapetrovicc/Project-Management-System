@@ -1,0 +1,61 @@
+﻿@page
+@model Projekat.Pages.Activities.CreateModel
+@{
+    ViewData["Title"] = "Create Activity";
+}
+
+<h1>Create Activity</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Activity.TaskID"></label>
+        <select asp-for="Activity.TaskID" class="form-control" asp-items="Model.TaskList">
+            <option value="">-- Select Task --</option>
+        </select>
+        <span asp-validation-for="Activity.TaskID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Activity.Name"></label>
+        <input asp-for="Activity.Name" class="form-control" />
+        <span asp-validation-for="Activity.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Activity.Description"></label>
+        <textarea asp-for="Activity.Description" class="form-control"></textarea>
+        <span asp-validation-for="Activity.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Activity.PlannedHours"></label>
+        <input asp-for="Activity.PlannedHours" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="Activity.PlannedHours" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Activity.ActualHours"></label>
+        <input asp-for="Activity.ActualHours" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="Activity.ActualHours" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Activity.DatePerformed"></label>
+        <input asp-for="Activity.DatePerformed" type="date" class="form-control" />
+        <span asp-validation-for="Activity.DatePerformed" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Attachment (optional)</label>
+        <input type="file" asp-for="AttachmentFile" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="Activity" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

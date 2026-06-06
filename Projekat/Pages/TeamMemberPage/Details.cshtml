@@ -1,0 +1,27 @@
+﻿@page
+@model Projekat.Pages.TeamMemberPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Team Member Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Team Member Details</h1>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">Team</dt>
+    <dd class="col-sm-10">@Model.TeamMember.Team?.Name</dd>
+
+    <dt class="col-sm-2">Employee</dt>
+    <dd class="col-sm-10">@Model.TeamMember.Employee?.FirstName @Model.TeamMember.Employee?.LastName</dd>
+
+    <dt class="col-sm-2">Role In Team</dt>
+    <dd class="col-sm-10">@Model.TeamMember.RoleInTeam</dd>
+</dl>
+
+<div class="mt-3">
+    <a asp-page="./Edit" asp-route-id="@Model.TeamMember.ID" class="btn btn-primary">Edit</a>
+    <a asp-page="./Delete" asp-route-id="@Model.TeamMember.ID" class="btn btn-danger ml-2">Delete</a>
+    <a asp-page="./TeamMember" class="btn btn-secondary ml-2">Back to List</a>
+</div>

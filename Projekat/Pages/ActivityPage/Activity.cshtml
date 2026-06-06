@@ -1,0 +1,66 @@
+﻿@page
+@model Projekat.Pages.ActivityPage.ActivityModel
+
+@{
+    ViewData["Title"] = "Activities";
+}
+
+<h1>Activities</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Activity</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Planned Hours</th>
+            <th>Actual Hours</th>
+            <th>Date Performed</th>
+            <th>Task</th>
+            <th>Work Package</th>
+            <th>Attachment</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Activities != null && Model.Activities.Count > 0)
+        {
+            foreach (var activity in Model.Activities)
+            {
+                <tr>
+                    <td>@activity.Name</td>
+                    <td>@activity.Description</td>
+                    <td>@activity.PlannedHours</td>
+                    <td>@activity.ActualHours</td>
+                    <td>@activity.DatePerformed</td>
+                    <td>@(activity.Task != null ? activity.Task.Name : "")</td>
+                    <td>@(activity.Task?.WorkPackage != null ? activity.Task.WorkPackage.Name : "")</td>
+                    <td>
+                        @if (activity.Attachment != null && activity.Attachment.Length > 0)
+                        {
+                            <a asp-page="./Activity" asp-route-id="@activity.ID" asp-page-handler="Download">Download</a>
+                        }
+                        else
+                        {
+                            <span>No file</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@activity.ID">Edit</a> |
+                        <a asp-page="Details" asp-route-id="@activity.ID">Details</a> |
+                        <a asp-page="Delete" asp-route-id="@activity.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9">No activities found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

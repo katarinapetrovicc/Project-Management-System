@@ -1,0 +1,46 @@
+﻿@page
+@model Projekat.Pages.TeamMemberPage.CreateModel
+
+@{
+    ViewData["Title"] = "Create Team Member";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create Team Member</h1>
+
+<form method="post">
+    <!-- Dropdown za Team -->
+    <div class="form-group">
+        <label asp-for="TeamMember.TeamID">Team</label>
+        <select asp-for="TeamMember.TeamID" class="form-control" asp-items="Model.TeamList">
+            <option value="">-- Select Team --</option>
+        </select>
+        <span asp-validation-for="TeamMember.TeamID" class="text-danger"></span>
+    </div>
+
+    <!-- Dropdown za Employee -->
+    <div class="form-group">
+        <label asp-for="TeamMember.EmployeeID">Employee</label>
+        <select asp-for="TeamMember.EmployeeID" class="form-control" asp-items="Model.EmployeeList">
+            <option value="">-- Select Employee --</option>
+        </select>
+        <span asp-validation-for="TeamMember.EmployeeID" class="text-danger"></span>
+    </div>
+
+    <!-- Textbox za Role in Team -->
+    <div class="form-group">
+        <label asp-for="TeamMember.RoleInTeam">Role In Team</label>
+        <input asp-for="TeamMember.RoleInTeam" class="form-control" />
+        <span asp-validation-for="TeamMember.RoleInTeam" class="text-danger"></span>
+    </div>
+
+    <!-- Dugmad odvojena od input polja -->
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-page="./TeamMember" class="btn btn-secondary ml-2">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

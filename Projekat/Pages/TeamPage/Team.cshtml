@@ -1,0 +1,37 @@
+﻿@page
+@model Projekat.Pages.TeamPage.TeamModel
+@{
+    ViewData["Title"] = "Teams";
+}
+
+<h1>Teams</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Team</a>
+</p>
+
+<table class="table table-bordered table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Logo</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model.Teams)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/team/@team.Logo" alt="@team.Name" width="60" height="60" />
+                </td>
+                <td>@team.Name</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@team.ID">Edit</a> |
+                    <a asp-page="Details" asp-route-id="@team.ID">Details</a> |
+                    <a asp-page="Delete" asp-route-id="@team.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

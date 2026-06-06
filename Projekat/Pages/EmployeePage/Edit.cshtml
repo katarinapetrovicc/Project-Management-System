@@ -1,0 +1,72 @@
+﻿@page
+@model Projekat.Pages.EmployeePage.EditModel
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h2>Edit Employee</h2>
+
+@if (Model.Employee != null)
+{
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Employee.ID" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Employee.FirstName" class="form-label"></label>
+            <input asp-for="Employee.FirstName" class="form-control" />
+            <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Employee.LastName" class="form-label"></label>
+            <input asp-for="Employee.LastName" class="form-control" />
+            <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Employee.Position" class="form-label"></label>
+            <input asp-for="Employee.Position" class="form-control" />
+            <span asp-validation-for="Employee.Position" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Employee.Email" class="form-label"></label>
+            <input asp-for="Employee.Email" class="form-control" />
+            <span asp-validation-for="Employee.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Employee.Phone" class="form-label"></label>
+            <input asp-for="Employee.Phone" class="form-control" />
+            <span asp-validation-for="Employee.Phone" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Current Profile Image</label>
+            <div class="mb-2">
+                <img src="@Model.EmployeeImagePath" width="100" alt="@Model.Employee.FirstName" class="mb-2" />
+                <div>
+                    <input type="checkbox" asp-for="RemoveProfileImage" /> Remove existing image
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label class="form-label">New Profile Image (optional)</label>
+            <input type="file" asp-for="ProfileImageFile" class="form-control" />
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="./Employee" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+}
+else
+{
+    <p><em>Employee not found.</em></p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

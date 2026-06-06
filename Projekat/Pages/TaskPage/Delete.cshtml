@@ -1,0 +1,47 @@
+﻿@page
+@model Projekat.Pages.Tasks.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Task";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete Task</h1>
+
+@if (Model.Task == null)
+{
+    <p><em>Task not found.</em></p>
+}
+else
+{
+    <h4>Are you sure you want to delete this task?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Task.Name</dd>
+
+        <dt class="col-sm-2">Work Package</dt>
+        <dd class="col-sm-10">@Model.Task.WorkPackage?.Name</dd>
+
+        <dt class="col-sm-2">Description</dt>
+        <dd class="col-sm-10">@Model.Task.Description</dd>
+
+        <dt class="col-sm-2">Planned Hours</dt>
+        <dd class="col-sm-10">@Model.Task.PlannedHours</dd>
+
+        <dt class="col-sm-2">Actual Hours</dt>
+        <dd class="col-sm-10">@Model.Task.ActualHours</dd>
+
+        <dt class="col-sm-2">Deadline</dt>
+        <dd class="col-sm-10">@Model.Task.Deadline</dd>
+
+        <dt class="col-sm-2">Status</dt>
+        <dd class="col-sm-10">@Model.Task.Status</dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Task.ID" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-page="./Task" class="btn btn-secondary">Cancel</a>
+    </form>
+}

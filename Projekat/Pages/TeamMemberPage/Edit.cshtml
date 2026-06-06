@@ -1,0 +1,55 @@
+﻿@page
+@model Projekat.Pages.TeamMemberPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit Team Member";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Team Member</h1>
+
+@if (Model.TeamMember != null)
+{
+    <form method="post">
+        <input type="hidden" asp-for="TeamMember.ID" />
+
+        <!-- Dropdown za Team -->
+        <div class="form-group">
+            <label asp-for="TeamMember.TeamID">Team</label>
+            <select asp-for="TeamMember.TeamID" class="form-control" asp-items="Model.TeamList">
+                <option value="">-- Select Team --</option>
+            </select>
+            <span asp-validation-for="TeamMember.TeamID" class="text-danger"></span>
+        </div>
+
+        <!-- Dropdown za Employee -->
+        <div class="form-group">
+            <label asp-for="TeamMember.EmployeeID">Employee</label>
+            <select asp-for="TeamMember.EmployeeID" class="form-control" asp-items="Model.EmployeeList">
+                <option value="">-- Select Employee --</option>
+            </select>
+            <span asp-validation-for="TeamMember.EmployeeID" class="text-danger"></span>
+        </div>
+
+        <!-- Textbox za Role in Team -->
+        <div class="form-group">
+            <label asp-for="TeamMember.RoleInTeam">Role In Team</label>
+            <input asp-for="TeamMember.RoleInTeam" class="form-control" />
+            <span asp-validation-for="TeamMember.RoleInTeam" class="text-danger"></span>
+        </div>
+
+        <!-- Dugmad odvojena -->
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="./TeamMember" class="btn btn-secondary ml-2">Cancel</a>
+        </div>
+    </form>
+}
+else
+{
+    <p><em>Team Member not found.</em></p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

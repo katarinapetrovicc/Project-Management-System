@@ -1,0 +1,87 @@
+﻿@page
+@model Projekat.Pages.Activities.EditModel
+@{
+    ViewData["Title"] = "Edit Activity";
+}
+
+<h2>Edit Activity</h2>
+
+@if (Model.Activity != null)
+{
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Activity.ID" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Activity.TaskID">Task</label>
+            <select asp-for="Activity.TaskID" class="form-control" asp-items="Model.TaskList">
+                <option value="">-- Select Task --</option>
+            </select>
+            <span asp-validation-for="Activity.TaskID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Activity.Name"></label>
+            <input asp-for="Activity.Name" class="form-control" />
+            <span asp-validation-for="Activity.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Activity.Description"></label>
+            <textarea asp-for="Activity.Description" class="form-control"></textarea>
+            <span asp-validation-for="Activity.Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Activity.PlannedHours"></label>
+            <input asp-for="Activity.PlannedHours" type="number" step="0.01" class="form-control" />
+            <span asp-validation-for="Activity.PlannedHours" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Activity.ActualHours"></label>
+            <input asp-for="Activity.ActualHours" type="number" step="0.01" class="form-control" />
+            <span asp-validation-for="Activity.ActualHours" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Activity.DatePerformed"></label>
+            <input asp-for="Activity.DatePerformed" type="date" class="form-control" />
+            <span asp-validation-for="Activity.DatePerformed" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Current Attachment</label>
+            <div>
+                @if (Model.Activity.Attachment != null && Model.Activity.Attachment.Length > 0)
+                {
+                    <a asp-page="./DownloadAttachment" asp-route-id="@Model.Activity.ID">Download</a>
+                    <div>
+                        <input type="checkbox" asp-for="RemoveAttachment" /> Remove existing file
+                    </div>
+                }
+                else
+                {
+                    <span>No file uploaded</span>
+                }
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>New Attachment (optional)</label>
+            <input type="file" asp-for="AttachmentFile" class="form-control" />
+        </div>
+
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="./Activity" class="btn btn-secondary ml-2">Cancel</a>
+        </div>
+    </form>
+}
+else
+{
+    <p><em>Activity not found.</em></p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

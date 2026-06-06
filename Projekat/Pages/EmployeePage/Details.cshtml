@@ -1,0 +1,38 @@
+﻿@page
+@model Projekat.Pages.EmployeePage.DetailsModel
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<h2>Employee Details</h2>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">First Name</dt>
+    <dd class="col-sm-10">@Model.Employee.FirstName</dd>
+
+    <dt class="col-sm-2">Last Name</dt>
+    <dd class="col-sm-10">@Model.Employee.LastName</dd>
+
+    <dt class="col-sm-2">Position</dt>
+    <dd class="col-sm-10">@Model.Employee.Position</dd>
+
+    <dt class="col-sm-2">Email</dt>
+    <dd class="col-sm-10">@Model.Employee.Email</dd>
+
+    <dt class="col-sm-2">Phone</dt>
+    <dd class="col-sm-10">@Model.Employee.Phone</dd>
+
+    <dt class="col-sm-2">Profile Image</dt>
+    <dd class="col-sm-10">
+        <img src="@Model.EmployeeImagePath"
+             alt="@Model.Employee.FirstName"
+             style="max-width:120px; max-height:120px;" />
+    </dd>
+</dl>
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Employee.ID" class="btn btn-primary">Edit</a>
+    <a asp-page="./Delete" asp-route-id="@Model.Employee.ID" class="btn btn-danger">Delete</a>
+    <a asp-page="Employee" class="btn btn-secondary">Back to List</a>
+</div>

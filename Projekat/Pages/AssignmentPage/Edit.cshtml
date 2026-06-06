@@ -1,0 +1,62 @@
+﻿@page
+@model Projekat.Pages.AssignmentPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit Assignment";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Assignment</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Assignment.ID" />
+
+    <div class="form-group">
+        <label asp-for="Assignment.EmployeeID">Employee</label>
+        <select asp-for="Assignment.EmployeeID" class="form-control" asp-items="Model.EmployeeList">
+            <option value="">-- Select Employee --</option>
+        </select>
+        <span asp-validation-for="Assignment.EmployeeID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Assignment.ActivityID">Activity</label>
+        <select asp-for="Assignment.ActivityID" class="form-control" asp-items="Model.ActivityList">
+            <option value="">-- Select Activity --</option>
+        </select>
+        <span asp-validation-for="Assignment.ActivityID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Assignment.AssignedDays"></label>
+        <input asp-for="Assignment.AssignedDays" class="form-control" />
+        <span asp-validation-for="Assignment.AssignedDays" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Assignment.Month"></label>
+        <input asp-for="Assignment.Month" class="form-control" />
+        <span asp-validation-for="Assignment.Month" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Assignment.Year"></label>
+        <input asp-for="Assignment.Year" class="form-control" />
+        <span asp-validation-for="Assignment.Year" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Assignment.Progress"></label>
+        <input asp-for="Assignment.Progress" class="form-control" />
+        <span asp-validation-for="Assignment.Progress" class="text-danger"></span>
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-page="./Assignment" class="btn btn-secondary ml-2">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,50 @@
+﻿@page
+@model Projekat.Pages.TeamMemberPage.TeamMemberModel
+
+@{
+    ViewData["Title"] = "Team Members";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Team Members</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Team Member</a>
+</p>
+<table class="table table-bordered table-striped mt-3">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamMember[0].Team)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamMember[0].Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamMember[0].RoleInTeam)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TeamMember)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Team.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FirstName) @Html.DisplayFor(modelItem => item.Employee.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleInTeam)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

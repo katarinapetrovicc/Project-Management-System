@@ -1,0 +1,47 @@
+﻿@page
+@model Projekat.Pages.AssignmentPage.AssignedModel
+
+@{
+    ViewData["Title"] = "Assigned";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Assigned</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Assignment</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Employee</th>
+            <th>Activity</th>
+            <th>Assigned Days</th>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Progress (%)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AssignmentList)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@(item.Employee != null ? item.Employee.FirstName + " " + item.Employee.LastName : "N/A")</td>
+                <td>@(item.Activity != null ? item.Activity.Name : "N/A")</td>
+                <td>@item.AssignedDays</td>
+                <td>@item.Month</td>
+                <td>@item.Year</td>
+                <td>@item.Progress</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

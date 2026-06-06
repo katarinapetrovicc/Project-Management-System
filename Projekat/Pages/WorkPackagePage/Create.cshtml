@@ -1,0 +1,56 @@
+﻿@page
+@model Projekat.Pages.WorkPackage.CreateModel
+@{
+    ViewData["Title"] = "Create WorkPackage";
+}
+
+<h1>Create New WorkPackage</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="WorkPackage.Name"></label>
+        <input asp-for="WorkPackage.Name" class="form-control" />
+        <span asp-validation-for="WorkPackage.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkPackage.Description"></label>
+        <textarea asp-for="WorkPackage.Description" class="form-control"></textarea>
+        <span asp-validation-for="WorkPackage.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkPackage.PlannedDays"></label>
+        <input asp-for="WorkPackage.PlannedDays" type="number" class="form-control" />
+        <span asp-validation-for="WorkPackage.PlannedDays" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkPackage.Priority"></label>
+        <select asp-for="WorkPackage.Priority" class="form-control">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+        <span asp-validation-for="WorkPackage.Priority" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkPackage.ProjectID">Project</label>
+        <select asp-for="WorkPackage.ProjectID" class="form-control" asp-items="Model.ProjectList"></select>
+        <span asp-validation-for="WorkPackage.ProjectID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AttachmentFile">Attachment</label>
+        <input asp-for="AttachmentFile" type="file" class="form-control" />
+        <span asp-validation-for="AttachmentFile" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="./WorkPackage" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

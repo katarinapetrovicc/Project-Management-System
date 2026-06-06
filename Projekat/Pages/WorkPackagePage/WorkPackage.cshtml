@@ -1,0 +1,62 @@
+﻿@page
+@model Projekat.Pages.WorkPackagePage.WorkPackageModel
+
+@{
+    ViewData["Title"] = "Work Packages";
+}
+
+<h1>Work Packages</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Work Package</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Planned Days</th>
+            <th>Priority</th>
+            <th>Project</th>
+            <th>Attachment</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.WorkPackages != null && Model.WorkPackages.Count > 0)
+        {
+            foreach (var item in Model.WorkPackages)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.PlannedDays</td>
+                    <td>@item.Priority</td>
+                    <td>@item.Project?.Name</td>
+                    <td>
+                        @if (item.Attachment != null && item.Attachment.Length > 0)
+                        {
+                            <a asp-page="./DownloadAttachment" asp-route-id="@item.ID">Download</a>
+                        }
+                        else
+                        {
+                            <span>No file</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7">No work packages found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
