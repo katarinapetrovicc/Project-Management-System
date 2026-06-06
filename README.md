@@ -2,13 +2,9 @@
 
 ## Project Overview
 
-Project Management System is a web application developed using ASP.NET Core Razor Pages, Entity Framework Core, and SQLite database.
+Project Management System is a web application developed using ASP.NET Core Razor Pages, Entity Framework Core, and SQLite. The application is designed to support project planning, organization, and monitoring by managing projects, work packages, tasks, activities, employees, teams, and assignments.
 
-The application enables efficient management and monitoring of projects through project planning, work package organization, task tracking, activity management, employee administration, team coordination, and assignment monitoring.
-
-The system is designed to support project lifecycle management, employee workload tracking, and project documentation management.
-
-This project was developed as part of the **Software Engineering 2** course.
+The system enables users to create and manage projects, organize work into work packages and tasks, assign activities to employees, track progress, upload and download files, and manage team structures through an intuitive web interface.
 
 ---
 
@@ -18,8 +14,8 @@ This project was developed as part of the **Software Engineering 2** course.
 - C#
 - Entity Framework Core
 - SQLite
-- HTML
-- CSS
+- HTML5
+- CSS3
 - Bootstrap
 - Visual Studio 2022
 
@@ -27,211 +23,137 @@ This project was developed as part of the **Software Engineering 2** course.
 
 ## System Features
 
-### Project Management
+The application provides management of the following entities:
 
-- Create new projects
-- Edit existing projects
-- View project details
-- Delete projects
-- Manage project budgets, statuses, and timelines
+### Projects
+Projects contain basic information such as:
+- Project name
+- Description
+- Start date
+- End date
+- Budget
+- Status
 
-### Work Package Management
+### Work Packages
+Work packages represent logical parts of a project and include:
+- Name
+- Description
+- Planned days
+- Priority
+- Associated project
+- File attachment support
 
-- Create and organize work packages
-- Connect work packages to projects
-- Define priorities and planned duration
-- Upload and download project documentation
+### Tasks
+Tasks belong to work packages and include:
+- Name
+- Description
+- Planned hours
+- Actual hours
+- Deadline
+- Status
 
-### Task Management
+### Activities
+Activities represent individual work actions performed within tasks and include:
+- Name
+- Description
+- Planned hours
+- Actual hours
+- Date performed
+- File attachment support
 
-- Create tasks within work packages
-- Track planned and actual working hours
-- Manage deadlines
-- Monitor task status and progress
+### Employees
+Employee management includes:
+- First name
+- Last name
+- Position
+- Email
+- Phone number
+- Profile image
+- Search functionality
 
-### Activity Management
+### Teams
+Teams can be created and managed with:
+- Team name
+- Team logo
+- Team membership management
 
-- Create activities related to tasks
-- Track planned and actual hours
-- Record activity execution dates
-- Upload and download activity attachments
+### Team Members
+Team members connect employees and teams through:
+- Team assignment
+- Employee assignment
+- Role within the team
 
-### Employee Management
-
-- Add, edit, and remove employees
-- Store employee profile images
-- Search employees by name
-- Manage employee contact information and positions
-
-### Team Management
-
-- Create and manage teams
-- Upload team logos
-- Organize employees into teams
-
-### Team Member Management
-
-- Assign employees to teams
-- Define employee roles within teams
-- Manage team composition
-
-### Assignment Management
-
-- Assign activities to employees
-- Track assigned working days
-- Monitor activity completion percentage
-- Track employee workload by month and year
+### Assignments
+Assignments are used to track employee participation in activities:
+- Assigned days
+- Month
+- Year
+- Progress percentage
 
 ---
 
 ## Database Structure
 
-The application uses a SQLite database consisting of the following entities:
+The application uses a relational SQLite database containing the following tables:
 
-- Project
-- WorkPackage
-- Task
-- Activity
-- Employee
-- Team
-- TeamMember
-- Assignment
+- Projects
+- WorkPackages
+- Tasks
+- Activities
+- Employees
+- Teams
+- TeamMembers
+- Assignments
 
-Relationships between entities are implemented to support project organization, task management, employee assignments, and team collaboration.
+The database is managed using Entity Framework Core and includes relationships between all entities.
 
 ---
 
 ## Entity Relationships
 
-Project
-└── WorkPackage  
-&nbsp;&nbsp;&nbsp;&nbsp;└── Task  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Activity  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Assignment  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Employee
+The system implements the following relationships:
 
-Team  
-└── TeamMember  
-&nbsp;&nbsp;&nbsp;&nbsp;└── Employee
+- One Project can contain multiple Work Packages
+- One Work Package can contain multiple Tasks
+- One Task can contain multiple Activities
+- One Employee can participate in multiple Teams
+- One Team can contain multiple Employees
+- One Employee can be assigned to multiple Activities
+- Assignments track employee progress on activities
 
 ---
 
 ## Application Modules
 
-### Projects
+The application consists of the following modules:
 
-Manage project information including:
+1. Project Management
+2. Work Package Management
+3. Task Management
+4. Activity Management
+5. Employee Management
+6. Team Management
+7. Team Member Management
+8. Assignment Management
 
-- Name
-- Description
-- Budget
-- Start Date
-- End Date
-- Status
-
-### Work Packages
-
-Manage:
-
-- Planned Days
-- Priority
-- Documentation Attachments
-- Related Project
-
-### Tasks
-
-Manage:
-
-- Planned Hours
-- Actual Hours
-- Deadlines
-- Status
-- Related Work Package
-
-### Activities
-
-Manage:
-
-- Planned Hours
-- Actual Hours
-- Date Performed
-- Related Task
-- Attachments
-
-### Employees
-
-Manage:
-
-- Profile Images
-- Contact Information
-- Job Position
-
-### Teams
-
-Manage:
-
-- Team Logos
-- Team Organization
-
-### Team Members
-
-Manage:
-
-- Employee-Team Relationships
-- Team Roles
-- Team Composition
-
-### Assignments
-
-Track:
-
-- Employee Assignments
-- Assigned Days
-- Progress Percentage
-- Workload Distribution
+Each module supports full Create, Read, Update, and Delete (CRUD) functionality.
 
 ---
 
 ## Key Features
 
-✔ Full CRUD operations
-
-✔ SQLite database integration
-
-✔ Entity Framework Core ORM
-
-✔ Multiple related entities
-
-✔ File upload and download support
-
-✔ Employee profile image management
-
-✔ Team logo management
-
-✔ Employee search functionality
-
-✔ Progress tracking
-
-✔ Assignment management
-
-✔ Relational database design
-
----
-
-## Application Pages
-
-The application contains dedicated pages for:
-
-- Projects
-- Work Packages
-- Tasks
-- Activities
-- Employees
-- Teams
-- Team Members
-- Assignments
-
-Each page provides complete Create, Read, Update, and Delete (CRUD) functionality.
+- CRUD operations for all entities
+- SQLite database support
+- Entity Framework Core integration
+- Project planning and tracking
+- Employee and team management
+- Task and activity monitoring
+- Assignment and progress tracking
+- Employee search functionality
+- File upload and download support
+- Employee profile image management
+- Team logo management
+- Relational database design
 
 ---
 
@@ -243,18 +165,21 @@ Each page provides complete Create, Read, Update, and Delete (CRUD) functionalit
 git clone https://github.com/katarinapetrovicc/Project-Management-System.git
 ```
 
-2. Open `Projekat.sln` in Visual Studio 2022.
+2. Open the solution in Visual Studio 2022.
 
 3. Restore NuGet packages.
 
-4. Build and run the application.
+4. Build the solution.
 
-5. The application will start locally and can be accessed through the browser.
+5. Run the application.
+
+The application will start locally and automatically connect to the included SQLite database.
 
 ---
 
 ## Database
 
-The SQLite database file (`radnici.db`) is included in the repository and already contains sample data for testing the application.
+The application uses a SQLite database (`radnici.db`) included in the repository.
 
-No additional database configuration is required.
+The database already contains sample data, allowing the application to be used immediately without additional configuration.
+
