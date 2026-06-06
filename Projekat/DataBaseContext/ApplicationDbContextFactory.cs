@@ -13,8 +13,8 @@ namespace DataBaseContext
         public DB_Context_Class CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<DB_Context_Class>();
-            //string databasePath = Path.Combine("..", "radnici.db");
-            string databasePath = @"C:\Users\Admin\Desktop\si2\radnici\radnici.db";
+            string databasePath = Path.Combine("..", "radnici.db");
+            //string databasePath = @"C:\Users\Admin\Desktop\si2\radnici\radnici.db";
 
             optionsBuilder.UseSqlite($"Data Source={databasePath}");
 

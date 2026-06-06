@@ -12,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 //string databasePath = Path.Combine("C:\\Users\\Admin\\Desktop\\radnici", "radnici.db");
-string databasePath = @"C:\Users\Admin\Desktop\si2\radnici\radnici.db";
+//string databasePath = @"C:\Users\Admin\Desktop\si2\radnici\radnici.db";
+string databasePath = Path.Combine(builder.Environment.ContentRootPath, "radnici.db");
 builder.Services.AddDbContext<DB_Context_Class>(options => options.UseSqlite($"Data Source={databasePath}"));
 
 
