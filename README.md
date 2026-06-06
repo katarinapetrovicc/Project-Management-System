@@ -1,214 +1,260 @@
 # Project Management System
 
-## Overview
+## Project Overview
 
-Project Management System is a web application developed using ASP.NET Core Razor Pages, Entity Framework Core and SQLite database.
+Project Management System is a web application developed using ASP.NET Core Razor Pages, Entity Framework Core, and SQLite database.
 
-The application is designed to support project management by organizing projects, work packages, tasks, activities, employees and teams. It enables tracking of employee assignments and monitoring project progress through a structured hierarchy of entities.
+The application enables efficient management and monitoring of projects through project planning, work package organization, task tracking, activity management, employee administration, team coordination, and assignment monitoring.
 
-This project was developed as part of the Software Engineering 2 (SI2) course.
+The system is designed to support project lifecycle management, employee workload tracking, and project documentation management.
 
----
-
-## Main Features
-
-### Project Management
-- Create, edit, view and delete projects
-- Track project status and duration
-- Organize project data through work packages
-
-### Work Package Management
-- Create work packages within projects
-- Define priorities and estimated workload
-- Associate work packages with projects
-
-### Task Management
-- Create and manage tasks inside work packages
-- Define deadlines and task status
-- Track task completion progress
-
-### Activity Management
-- Create activities related to specific tasks
-- Record performed activities
-- Track activity execution dates
-
-### Employee Management
-- Store employee information
-- Manage employee contact data
-- Track employee assignments
-
-### Team Management
-- Create and manage teams
-- Add employees to teams
-- Organize workforce for project execution
-
-### Assignment Tracking
-- Assign activities to employees
-- Monitor employee workload
-- Track assigned days, months and years
-- Record progress of assigned activities
+This project was developed as part of the **Software Engineering 2** course.
 
 ---
 
 ## Technologies Used
 
-### Backend
 - ASP.NET Core Razor Pages
 - C#
 - Entity Framework Core
-
-### Database
 - SQLite
-
-### Frontend
 - HTML
 - CSS
-- Razor Pages
-
-### Development Environment
+- Bootstrap
 - Visual Studio 2022
+
+---
+
+## System Features
+
+### Project Management
+
+- Create new projects
+- Edit existing projects
+- View project details
+- Delete projects
+- Manage project budgets, statuses, and timelines
+
+### Work Package Management
+
+- Create and organize work packages
+- Connect work packages to projects
+- Define priorities and planned duration
+- Upload and download project documentation
+
+### Task Management
+
+- Create tasks within work packages
+- Track planned and actual working hours
+- Manage deadlines
+- Monitor task status and progress
+
+### Activity Management
+
+- Create activities related to tasks
+- Track planned and actual hours
+- Record activity execution dates
+- Upload and download activity attachments
+
+### Employee Management
+
+- Add, edit, and remove employees
+- Store employee profile images
+- Search employees by name
+- Manage employee contact information and positions
+
+### Team Management
+
+- Create and manage teams
+- Upload team logos
+- Organize employees into teams
+
+### Team Member Management
+
+- Assign employees to teams
+- Define employee roles within teams
+- Manage team composition
+
+### Assignment Management
+
+- Assign activities to employees
+- Track assigned working days
+- Monitor activity completion percentage
+- Track employee workload by month and year
 
 ---
 
 ## Database Structure
 
-The application uses the following entities:
+The application uses a SQLite database consisting of the following entities:
 
-### Project
-Stores project information.
+- Project
+- WorkPackage
+- Task
+- Activity
+- Employee
+- Team
+- TeamMember
+- Assignment
 
-### WorkPackage
-Represents work packages that belong to a project.
-
-### Task
-Represents tasks within a work package.
-
-### Activity
-Represents activities performed within a task.
-
-### Employee
-Stores employee information.
-
-### Team
-Stores team information.
-
-### TeamMember
-Represents the relationship between employees and teams.
-
-### Assignment
-Represents employee assignments to activities and tracks progress.
+Relationships between entities are implemented to support project organization, task management, employee assignments, and team collaboration.
 
 ---
 
 ## Entity Relationships
 
 Project
-→ WorkPackages
+└── WorkPackage  
+&nbsp;&nbsp;&nbsp;&nbsp;└── Task  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Activity  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Assignment  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Employee
 
-WorkPackage
-→ Tasks
-
-Task
-→ Activities
-
-Employee
-→ Assignments
-
-Activity
-→ Assignments
-
-Team
-→ TeamMembers
-
-Employee
-→ TeamMembers
+Team  
+└── TeamMember  
+&nbsp;&nbsp;&nbsp;&nbsp;└── Employee
 
 ---
 
-## Project Architecture
+## Application Modules
 
-The solution is organized into several components:
+### Projects
 
-### DatabaseEntityLib
-Contains entity classes and data models.
+Manage project information including:
 
-### DataBaseContext
-Contains Entity Framework Core database context and relationship configuration.
+- Name
+- Description
+- Budget
+- Start Date
+- End Date
+- Status
 
-### Pages
-Contains Razor Pages used for application functionality.
+### Work Packages
 
-### wwwroot
-Contains static resources such as CSS files and images.
+Manage:
+
+- Planned Days
+- Priority
+- Documentation Attachments
+- Related Project
+
+### Tasks
+
+Manage:
+
+- Planned Hours
+- Actual Hours
+- Deadlines
+- Status
+- Related Work Package
+
+### Activities
+
+Manage:
+
+- Planned Hours
+- Actual Hours
+- Date Performed
+- Related Task
+- Attachments
+
+### Employees
+
+Manage:
+
+- Profile Images
+- Contact Information
+- Job Position
+
+### Teams
+
+Manage:
+
+- Team Logos
+- Team Organization
+
+### Team Members
+
+Manage:
+
+- Employee-Team Relationships
+- Team Roles
+- Team Composition
+
+### Assignments
+
+Track:
+
+- Employee Assignments
+- Assigned Days
+- Progress Percentage
+- Workload Distribution
 
 ---
 
-## Database
+## Key Features
 
-The repository includes a SQLite database file:
+✔ Full CRUD operations
 
-```
-radnici.db
-```
+✔ SQLite database integration
 
-The application is configured to use this database automatically when started.
+✔ Entity Framework Core ORM
+
+✔ Multiple related entities
+
+✔ File upload and download support
+
+✔ Employee profile image management
+
+✔ Team logo management
+
+✔ Employee search functionality
+
+✔ Progress tracking
+
+✔ Assignment management
+
+✔ Relational database design
+
+---
+
+## Application Pages
+
+The application contains dedicated pages for:
+
+- Projects
+- Work Packages
+- Tasks
+- Activities
+- Employees
+- Teams
+- Team Members
+- Assignments
+
+Each page provides complete Create, Read, Update, and Delete (CRUD) functionality.
 
 ---
 
 ## Running the Application
 
-### Clone the repository
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/katarinapetrovicc/Project-Management-System.git
 ```
 
-### Open the solution
+2. Open `Projekat.sln` in Visual Studio 2022.
 
-Open:
+3. Restore NuGet packages.
 
-```text
-Projekat.sln
-```
+4. Build and run the application.
 
-using Visual Studio 2022.
-
-### Restore dependencies
-
-Visual Studio will automatically restore NuGet packages.
-
-### Run the application
-
-Press:
-
-```text
-Ctrl + F5
-```
-
-or
-
-```text
-F5
-```
-
-to start the application.
+5. The application will start locally and can be accessed through the browser.
 
 ---
 
-## Course Requirements
+## Database
 
-The project satisfies the minimum course requirements:
+The SQLite database file (`radnici.db`) is included in the repository and already contains sample data for testing the application.
 
-- SQLite database
-- Entity Framework Core
-- ASP.NET Core Razor Pages
-- More than 8 related database tables
-- CRUD operations
-- Data search and display functionality
-- Employee and project management system
-
-
-
-Faculty of Engineering, University of Kragujevac
-
-Software Engineering 2 (SI2)
+No additional database configuration is required.
